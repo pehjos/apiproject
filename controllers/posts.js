@@ -47,7 +47,19 @@ export const getPostsBySearch1 = async (req, res) => {
         res.status(404).json({ message: error.message });
     }
 }
+export const getPostsBySearch2 = async (req, res) => {
+    const { searchQuery} = req.query;
 
+    try {
+        const city = new RegExp(searchQuery, "i");
+
+        const posts = await PostMessage.find({ $or: [ { city } ]});
+
+        res.json({ data: posts });
+    } catch (error) {    
+        res.status(404).json({ message: error.message });
+    }
+}
 export const getPostsByCreator = async (req, res) => {
     const { name } = req.query;
 
