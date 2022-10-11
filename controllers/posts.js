@@ -100,11 +100,54 @@ export const createPost = async (req, res) => {
 
 export const updatePost = async (req, res) => {
     const { id } = req.params;
-    const { title, message, creator, selectedFile, tags } = req.body;
+    const { 
+        title,
+        description,
+        price,
+        contact,
+        city,
+        area,
+        hno,
+        digital_address,
+        likes,
+        comments,
+        category,
+        landord_id,
+        landord,
+        image,
+        image1,
+        image2,
+        image3,
+        image4,
+        video,   
+
+
+
+     } = req.body;
     
     if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No post with id: ${id}`);
 
-    const updatedPost = { creator, title, message, tags, selectedFile, _id: id };
+    const updatedPost = { 
+        title,
+        description,
+        price,
+        contact,
+        city,
+        area,
+        hno,
+        digital_address,
+        likes,
+        comments,
+        category,
+        landord_id,
+        landord,
+        image,
+        image1,
+        image2,
+        image3,
+        image4,
+        video,   
+     _id: id };
 
     await PostMessage.findByIdAndUpdate(id, updatedPost, { new: true });
 
